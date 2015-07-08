@@ -34,4 +34,4 @@ suites:
     attributes:
       drush:
         install_method: 'git'
-        version: 'master'
+        version: '7.x'
