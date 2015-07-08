@@ -8,7 +8,7 @@ version          "0.10.0"
 
 depends          "php", "1.5.0"
 depends          "composer", "2.1.0"
-depends          "git", "4.1.0"
+depends          "git", "4.2.2"
 
 recipe           "drush",       "Installs Drush and dependencies."
 recipe           "drush::pear", "Installs Drush via PEAR."
