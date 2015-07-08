@@ -18,7 +18,8 @@
 
 include_recipe "git"
 
-use_composer = node['drush']['version'] == 'master' || Gem::Dependency.new('', '~> 7').match?('', node['drush']['version'])
+
+use_composer = node['drush']['version'] == 'master' || node['drush']['version'].match(/[78].[0-9x]/) 
 
 case node[:platform]
 when "debian", "ubuntu", "centos", "redhat"
@@ -37,11 +38,15 @@ when "debian", "ubuntu", "centos", "redhat"
   end
 
   if use_composer
+
+    if node['platform_family'] == 'rhel'
+      package "php-dom" 
+      package "php-posix"
+    end
+
     execute "drush-composer-install" do
       cwd node['drush']['install_dir']
-      command "#{node['composer']['bin']} install --no-interaction --no-ansi --quiet --no-dev"
-      action :nothing
-      subscribes :run, "git[#{node['drush']['install_dir']}]", :immediately
+      command "#{node['composer']['bin']} install --no-interaction --no-ansi --no-dev"
       only_if { File.exist?(node['composer']['bin']) }
     end
   end
