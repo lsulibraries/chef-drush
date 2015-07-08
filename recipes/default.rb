@@ -22,3 +22,4 @@ include_recipe "php"
 include_recipe "drush::upgrade_pear" if node['drush']['install_method'] == "pear"
 include_recipe "drush::install_console_table" if node['drush']['version'] != "master"
 include_recipe "drush::#{node['drush']['install_method']}"
+

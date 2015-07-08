@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-#include_recipe "git"
+include_recipe "git"
 
 
 use_composer = node['drush']['version'] == 'master' || node['drush']['version'].match(/[78].[0-9x]/) 
